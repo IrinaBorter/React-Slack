@@ -1,0 +1,13 @@
+node_modules
+public
+dist
+
+.idea
+.vscode
+*.swo
+
+*.bundle.js
+*.bundle.js.map
+*.map
+
+*.log
