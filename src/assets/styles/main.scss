@@ -1,10 +1,18 @@
 @import 'colors';
+@import 'fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   background-color: $light-purple;
+  margin: 0;
+  font-family: $roboto;
 }
 
-.container-block {
-  font-size: 20px;
-  background-color: $light-sea-green;
+ul, ol {
+  list-style: none;
 }

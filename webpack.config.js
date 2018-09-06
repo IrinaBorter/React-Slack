@@ -6,7 +6,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
+        app: './src/index.jsx',
     },
 
     output: {
@@ -16,13 +16,13 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.jsx'],
     },
 
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js|jsx$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',

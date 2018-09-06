@@ -1,0 +1,35 @@
+@import '../../../assets/styles/colors';
+
+.channels-container {
+  width: 250px;
+  background: $purple;
+  color: $white-purple;
+  height: 100%;
+  padding: 10px 0;
+}
+
+.channels-tab-header {
+  margin-bottom: 10px;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+.channel-item {
+  padding: 5px 10px;
+  transition: background 0.3s;
+  outline: none;
+
+  &:before {
+    content: '#';
+    margin-right: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: $medium-purple;
+  }
+
+  &.active {
+    background: $sea-wave;
+  }
+}
