@@ -4,6 +4,7 @@ import style from './chat.scss';
 
 import ChatHeader from './chat-header/chat-header';
 import ChatMessagesList from './chat-messages-list/chat-messages-list';
+import ChatMessageInput from './chat-message-input/chat-message-input';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Chat extends React.Component {
       <div className={style.chatContainer}>
         <ChatHeader title={this.state.title}/>
         <ChatMessagesList messages={this.state.messages} />
+        <ChatMessageInput />
       </div>
     );
   }

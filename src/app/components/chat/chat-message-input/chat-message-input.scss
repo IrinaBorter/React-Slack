@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/colors';
+@import '../../../../assets/styles/fonts';
+
+.chat-message-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.chat-message {
+  width: 100%;
+  border: 2px solid $gray;
+  border-radius: 5px;
+  padding: 10px 5px;
+  outline: none;
+  font-family: $roboto;
+  font-size: 16px;
+
+  &::placeholder {
+    color: $light-gray;
+    font-weight: lighter;
+  }
+
+  &.ng-invalid.ng-dirty  {
+    border: 1px solid $red;
+  }
+}
+
+.error-message {
+  color: $red;
+
+  &.hidden {
+    display: none;
+  }
+}
