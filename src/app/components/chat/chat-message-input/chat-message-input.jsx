@@ -29,6 +29,7 @@ class ChatMessageInput extends React.Component {
                ref={this.input}
         />
         <button type="button"
+                className={style.sendButton}
                 disabled={this.state.message.length === 0}
                 title={this.state.message.length === 0 ? 'Message cannot be empty' : ''}
                 onClick={this.handleClick}
