@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { pushMessage } from '../../store/actions/chat';
+
 import style from './chat.scss';
 
 import ChatHeader from './chat-header/chat-header';
@@ -10,6 +12,8 @@ import ChatMessageInput from './chat-message-input/chat-message-input';
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+
+    this.sendMessage = this.sendMessage.bind(this);
   }
 
   render() {
@@ -19,9 +23,23 @@ class Chat extends React.Component {
       <div className={style.chatContainer}>
         <ChatHeader title={title}/>
         <ChatMessagesList messages={messages} />
-        <ChatMessageInput />
+        <ChatMessageInput onMessageSend={this.sendMessage}/>
       </div>
     );
+  }
+
+  sendMessage(content) {
+    const message = {
+      content,
+      time: new Date().toISOString(),
+      author: {
+        id: '1',
+        name: 'Iryna',
+      },
+    };
+
+    console.log(message);
+    this.props.dispatch(pushMessage(message));
   }
 }
 

@@ -8,6 +8,9 @@ import App from './app/components/app';
 
 import store from './app/store';
 
+// TODO: remove window property
+window.store = store;
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
