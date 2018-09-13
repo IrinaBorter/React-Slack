@@ -6,7 +6,7 @@ import './assets/styles/main.scss';
 
 import App from './app/components/app';
 
-import store from './app/store';
+import store from './app/store/index';
 
 // TODO: remove window property
 window.store = store;

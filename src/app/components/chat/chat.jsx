@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { pushMessage } from '../../store/actions/chat';
+import { pushMessage, fetchMessages } from '../../store/actions/chat';
 
 import style from './chat.scss';
 
@@ -14,6 +14,10 @@ class Chat extends React.Component {
     super(props);
 
     this.sendMessage = this.sendMessage.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchMessages();
   }
 
   render() {
@@ -39,7 +43,7 @@ class Chat extends React.Component {
     };
 
     console.log(message);
-    this.props.dispatch(pushMessage(message));
+    this.props.pushMessage(message);
   }
 }
 
@@ -48,4 +52,9 @@ const mapStateToProps = (state) => ({
   title: state.chat.chatName,
 });
 
-export default connect(mapStateToProps)(Chat);
+const mapActionsToProps = {
+  pushMessage,
+  fetchMessages,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Chat);
