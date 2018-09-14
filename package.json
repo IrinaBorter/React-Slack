@@ -48,6 +48,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-observable": "^0.18.0",
     "rxjs": "^5.4.0"

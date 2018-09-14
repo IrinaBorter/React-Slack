@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loadWorkspacesStarted } from '../../store/actions/workspace';
 
@@ -21,7 +22,9 @@ class Workspaces extends React.Component {
       <div className={style.workspacesContainer}>
         {workspaces.map(workspace => {
           return (
-            <div className={style.workspaceItem} title={workspace.name} key={workspace.id}>{this.getWorkspaceName(workspace)}</div>
+            <Link to={`/workspaces/${workspace.id}`}>
+              <div className={style.workspaceItem} title={workspace.name} key={workspace.id}>{this.getWorkspaceName(workspace)}</div>
+            </Link>
           );
         })}
       </div>
