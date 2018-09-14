@@ -1,5 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers/index';
-import thunk from 'redux-thunk';
+import { createEpicMiddleware } from 'redux-observable';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-export default createStore(reducers, applyMiddleware(thunk));
+import rootReducer from './reducers/index';
+import rootEpic from './epics/index';
+
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+export default createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(epicMiddleware)),
+);

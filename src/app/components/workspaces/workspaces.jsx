@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchWorkspaces } from '../../store/actions/workspace';
+import { loadWorkspacesStarted } from '../../store/actions/workspace';
 
 import style from './workspaces.scss';
 
@@ -11,7 +11,7 @@ class Workspaces extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchWorkspaces();
+    this.props.loadWorkspacesStarted();
   }
 
   render() {
@@ -34,6 +34,6 @@ class Workspaces extends React.Component {
 }
 
 const mapStateToProps = (state) => ({ workspaces: state.workspace.workspaces });
-const mapActionsToProps = { fetchWorkspaces };
+const mapActionsToProps = { loadWorkspacesStarted };
 
 export default connect(mapStateToProps, mapActionsToProps)(Workspaces);

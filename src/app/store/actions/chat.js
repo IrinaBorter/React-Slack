@@ -1,6 +1,3 @@
-import { getMessages, postMessage } from '../../services/chat';
-
-export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const LOAD_MESSAGES_STARTED = 'LOAD_MESSAGES_STARTED';
 export const LOAD_MESSAGES_SUCCEEDED = 'LOAD_MESSAGES_SUCCEEDED';
 export const LOAD_MESSAGES_FAILED = 'LOAD_MESSAGES_FAILED';
@@ -37,31 +34,3 @@ export const pushMessageFailed = (error) => ({
   type: PUSH_MESSAGE_FAILED,
   payload: { error },
 });
-
-export function fetchMessages() {
-  return (dispatch) => {
-    dispatch(loadMessagesStarted());
-
-    return getMessages(1)
-      .then((response) => {
-        dispatch(loadMessagesSucceeded(response.data));
-      })
-      .catch(error => {
-        dispatch(loadMessagesFailed(error));
-      });
-  };
-}
-
-export function pushMessage(message) {
-  return (dispatch) => {
-    dispatch(pushMessageStarted(message));
-
-    return postMessage(message)
-      .then(response => {
-        dispatch(pushMessageSucceeded(response.data));
-      })
-      .catch(error => {
-        dispatch(pushMessageFailed(error));
-      });
-  };
-}

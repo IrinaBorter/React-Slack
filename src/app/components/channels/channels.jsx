@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchChannels } from '../../store/actions/channel';
+import { loadChannelsStarted } from '../../store/actions/channel';
 
 import style from './channels.scss';
 
@@ -11,7 +11,7 @@ class Channels extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchChannels();
+    this.props.loadChannelsStarted();
   }
 
   render() {
@@ -32,6 +32,6 @@ const mapStateToProps = (state) => ({
   channels: state.channel.channels,
 });
 
-const mapActionsToProps = { fetchChannels };
+const mapActionsToProps = { loadChannelsStarted };
 
 export default connect(mapStateToProps, mapActionsToProps)(Channels);

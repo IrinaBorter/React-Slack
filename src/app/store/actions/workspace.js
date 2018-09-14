@@ -1,5 +1,3 @@
-import { getWorkspaces } from '../../services/workspace';
-
 export const LOAD_WORKSPACES_STARTED = 'LOAD_WORKSPACES_STARTED';
 export const LOAD_WORKSPACES_SUCCEEDED = 'LOAD_WORKSPACES_SUCCEEDED';
 export const LOAD_WORKSPACES_FAILED = 'LOAD_WORKSPACES_FAILED';
@@ -42,17 +40,3 @@ export const excludeMemberToWorkspace = (member) => ({
   type: EXCLUDE_MEMBER_FROM_WORKSPACE,
   payload: { member },
 });
-
-export function fetchWorkspaces() {
-  return (dispatch) => {
-    dispatch(loadWorkspacesStarted());
-
-    return getWorkspaces()
-      .then((response) => {
-        dispatch(loadWorkspacesSucceeded(response.data));
-      })
-      .catch(error => {
-        dispatch(loadWorkspacesFailed(error));
-      });
-  };
-}

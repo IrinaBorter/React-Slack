@@ -1,6 +1,3 @@
-import { getChannels } from '../../services/channel';
-
-export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const LOAD_CHANNELS_STARTED = 'LOAD_CHANNELS_STARTED';
 export const LOAD_CHANNELS_SUCCEEDED = 'LOAD_CHANNELS_SUCCEEDED';
 export const LOAD_CHANNELS_FAILED = 'LOAD_CHANNELS_FAILED';
@@ -31,17 +28,3 @@ export const setActiveChannel = channel => ({
   type: SET_ACTIVE_CHANNEL,
   payload: { channel },
 });
-
-export function fetchChannels() {
-  return (dispatch) => {
-    dispatch(loadChannelsStarted());
-
-    return getChannels(1)
-      .then((response) => {
-        dispatch(loadChannelsSucceeded(response.data));
-      })
-      .catch(error => {
-        dispatch(loadChannelsFailed(error));
-      });
-  };
-}
