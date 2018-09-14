@@ -13,11 +13,12 @@ class ChatMessageInput extends React.Component {
     this.input = React.createRef();
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   render () {
     return (
-      <form className={style.chatMessageContainer}>
+      <form className={style.chatMessageContainer} onSubmit={this.handleClick}>
         <input type="text"
                placeholder="Type here..."
                className={style.chatMessage}
@@ -28,8 +29,9 @@ class ChatMessageInput extends React.Component {
                ref={this.input}
         />
         <button type="submit"
+                className={style.sendButton}
                 disabled={this.state.message.length === 0}
-                title={!this.state.message.length === 0 ? 'Message cannot be empty' : ''}
+                title={this.state.message.length === 0 ? 'Message cannot be empty' : ''}
         >Send</button>
       </form>
     );
@@ -37,6 +39,12 @@ class ChatMessageInput extends React.Component {
 
   handleChange(event) {
     this.setState({ message: event.target.value });
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    this.props.onMessageSend(this.state.message);
+    this.setState({ message: '' });
   }
 }
 

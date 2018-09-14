@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { pushMessageStarted, loadMessagesStarted } from '../../store/actions/chat';
 
 import style from './chat.scss';
 
@@ -10,46 +13,48 @@ class Chat extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      title: 'React Chat',
-      messages: [
-        {
-          content: 'bla bla message',
-          time: '2017-08-01T17:24:39.000Z',
-          author: {
-            id: '1',
-            name: 'Iryna',
-          },
-        },
-        {
-          content: 'again bla bla message',
-          time: '2017-08-01T17:26:39.000Z',
-          author: {
-            id: '1',
-            name: 'Iryna',
-          },
-        },
-        {
-          content: 'and again bla bla message',
-          time: '2017-08-01T17:30:39.000Z',
-          author: {
-            id: '1',
-            name: 'Iryna',
-          },
-        },
-      ],
-    };
+    this.sendMessage = this.sendMessage.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.loadMessagesStarted();
   }
 
   render() {
+    const { title, messages } = this.props;
+
     return (
       <div className={style.chatContainer}>
-        <ChatHeader title={this.state.title}/>
-        <ChatMessagesList messages={this.state.messages} />
-        <ChatMessageInput />
+        <ChatHeader title={title}/>
+        <ChatMessagesList messages={messages} />
+        <ChatMessageInput onMessageSend={this.sendMessage}/>
       </div>
     );
   }
+
+  sendMessage(content) {
+    const message = {
+      content,
+      time: new Date().toISOString(),
+      author: {
+        id: '1',
+        name: 'Iryna',
+      },
+    };
+
+    console.log(message);
+    this.props.pushMessageStarted(message);
+  }
 }
 
-export default Chat;
+const mapStateToProps = (state) => ({
+  messages: state.chat.messages,
+  title: state.chat.chatName,
+});
+
+const mapActionsToProps = {
+  pushMessageStarted,
+  loadMessagesStarted,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Chat);
