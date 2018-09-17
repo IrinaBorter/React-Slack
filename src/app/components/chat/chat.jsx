@@ -12,12 +12,21 @@ import ChatMessageInput from './chat-message-input/chat-message-input';
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-
-    this.sendMessage = this.sendMessage.bind(this);
   }
 
   componentDidMount() {
-    this.props.loadMessagesStarted();
+    const { channelId } = this.props.match.params;
+
+    this.props.loadMessagesStarted(channelId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { channelId } = this.props.match.params;
+    const prevChannelId = prevProps.match.params.channelId;
+
+    if (channelId !== prevChannelId) {
+      this.props.loadMessagesStarted(channelId);
+    }
   }
 
   render() {
@@ -32,7 +41,7 @@ class Chat extends React.Component {
     );
   }
 
-  sendMessage(content) {
+  sendMessage = (content) => {
     const message = {
       content,
       time: new Date().toISOString(),
@@ -40,11 +49,11 @@ class Chat extends React.Component {
         id: '1',
         name: 'Iryna',
       },
+      channelId: this.props.match.params.channelId,
     };
 
-    console.log(message);
     this.props.pushMessageStarted(message);
-  }
+  };
 }
 
 const mapStateToProps = (state) => ({

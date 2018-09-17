@@ -1,9 +1,7 @@
 import React from 'react';
+import { renderRoutes } from 'react-router-config';
 
 import Workspaces from './workspaces/workspaces';
-import Channels from './channels/channels';
-import Chat from './chat/chat';
-
 import style from './app.scss';
 
 class App extends React.Component {
@@ -11,8 +9,7 @@ class App extends React.Component {
     return (
       <div className={style.appContainer}>
         <Workspaces />
-        <Channels />
-        <Chat />
+        {renderRoutes(this.props.route.routes)}
       </div>
     );
   }

@@ -6,8 +6,8 @@ import { getMessages, postMessage } from '../../services/chat';
 
 const fetchChats = action$ => {
   return action$.ofType(chatActions.LOAD_MESSAGES_STARTED)
-    .switchMap(() => {
-      return getMessages(1)
+    .switchMap(({ payload: { channelId } }) => {
+      return getMessages(channelId)
         .map(response => chatActions.loadMessagesSucceeded(response.data))
         .catch((error) => of(chatActions.loadMessagesFailed(error)));
     });

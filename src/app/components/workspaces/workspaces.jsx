@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loadWorkspacesStarted } from '../../store/actions/workspace';
 
@@ -8,10 +9,16 @@ import style from './workspaces.scss';
 class Workspaces extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      memberId: 1,
+    };
   }
 
   componentDidMount() {
-    this.props.loadWorkspacesStarted();
+    const { memberId } = this.state;
+
+    this.props.loadWorkspacesStarted(memberId);
   }
 
   render() {
@@ -21,7 +28,9 @@ class Workspaces extends React.Component {
       <div className={style.workspacesContainer}>
         {workspaces.map(workspace => {
           return (
-            <div className={style.workspaceItem} title={workspace.name} key={workspace.id}>{this.getWorkspaceName(workspace)}</div>
+            <Link to={`/workspaces/${workspace.id}`} key={workspace.id}>
+              <div className={style.workspaceItem} title={workspace.name}>{this.getWorkspaceName(workspace)}</div>
+            </Link>
           );
         })}
       </div>

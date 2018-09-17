@@ -4,9 +4,9 @@ export const LOAD_CHANNELS_FAILED = 'LOAD_CHANNELS_FAILED';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const SET_ACTIVE_CHANNEL = 'SET_ACTIVE_CHANNEL';
 
-export const loadChannelsStarted = () => ({
+export const loadChannelsStarted = (workspaceId) => ({
   type: LOAD_CHANNELS_STARTED,
-  payload: null,
+  payload: { workspaceId },
 });
 
 export const loadChannelsSucceeded = (channels) => ({

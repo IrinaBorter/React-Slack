@@ -8,10 +8,10 @@ export function getMessages(channelId) {
   }));
 }
 
-export function postMessage({ content, author: { id } }) {
+export function postMessage({ channelId, content, author: { id } }) {
   return fromPromise(axios({
     method: 'post',
     url: `http://localhost:3000/api/messages`,
-    data: { content, authorId: id, channelId: '1' },
+    data: { content, authorId: id, channelId },
   }));
 }
