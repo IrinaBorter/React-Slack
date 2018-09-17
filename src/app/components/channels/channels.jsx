@@ -19,21 +19,21 @@ class Channels extends React.Component {
   render() {
     const { channels } = this.props;
 
-    return (
-      <div className={style.channelsContainer}>
-        <h3 className={style.channelsTabHeader}>Channels</h3>
-        {
-          channels.map(channel => {
-            return (
-              <Link to={`${this.props.match.url}/channels/${channel.id}`} key={channel.id}>
-                <div className={style.channelItem}>{channel.name}</div>
-              </Link>
-            );
-          })
-        }
-        {renderRoutes(this.props.route.routes)}
-      </div>
-    );
+    return ([
+        <div className={style.channelsContainer}>
+          <h3 className={style.channelsTabHeader}>Channels</h3>
+          {
+            channels.map(channel => {
+              return (
+                <Link to={`${this.props.match.url}/channels/${channel.id}`} key={channel.id}>
+                  <div className={style.channelItem}>{channel.name}</div>
+                </Link>
+              );
+            })
+          }
+        </div>,
+        renderRoutes(this.props.route.routes),
+    ]);
   }
 }
 
