@@ -22,8 +22,8 @@ class Workspaces extends React.Component {
       <div className={style.workspacesContainer}>
         {workspaces.map(workspace => {
           return (
-            <Link to={`/workspaces/${workspace.id}`}>
-              <div className={style.workspaceItem} title={workspace.name} key={workspace.id}>{this.getWorkspaceName(workspace)}</div>
+            <Link to={`/workspaces/${workspace.id}`} key={workspace.id}>
+              <div className={style.workspaceItem} title={workspace.name}>{this.getWorkspaceName(workspace)}</div>
             </Link>
           );
         })}

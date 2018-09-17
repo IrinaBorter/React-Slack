@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 
 import { loadChannelsStarted } from '../../store/actions/channel';
 
 import style from './channels.scss';
-import {Link} from "react-router-dom";
-import {renderRoutes} from "react-router-config";
 
 class Channels extends React.Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class Channels extends React.Component {
         {
           channels.map(channel => {
             return (
-              <Link to={`/channels/${channel.id}`}>
-                <div className={style.channelItem} key={channel.id}>{channel.name}</div>
+              <Link to={`${this.props.match.url}/channels/${channel.id}`} key={channel.id}>
+                <div className={style.channelItem}>{channel.name}</div>
               </Link>
             );
           })

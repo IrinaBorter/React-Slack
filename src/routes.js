@@ -10,7 +10,7 @@ const routes = [
         component: Channel,
         routes: [
           {
-            path: 'channels/:channelId',
+            path: '/channels/:channelId',
             component: Chat,
           },
         ],
