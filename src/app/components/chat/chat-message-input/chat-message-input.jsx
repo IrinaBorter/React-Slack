@@ -11,9 +11,6 @@ class ChatMessageInput extends React.Component {
     };
 
     this.input = React.createRef();
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   render () {
@@ -37,15 +34,15 @@ class ChatMessageInput extends React.Component {
     );
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ message: event.target.value });
-  }
+  };
 
-  handleClick(event) {
+  handleClick = (event) => {
     event.preventDefault();
     this.props.onMessageSend(this.state.message);
     this.setState({ message: '' });
-  }
+  };
 }
 
 export default ChatMessageInput;

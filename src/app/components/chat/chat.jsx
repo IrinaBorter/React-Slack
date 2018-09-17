@@ -12,8 +12,6 @@ import ChatMessageInput from './chat-message-input/chat-message-input';
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-
-    this.sendMessage = this.sendMessage.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +41,7 @@ class Chat extends React.Component {
     );
   }
 
-  sendMessage(content) {
+  sendMessage = (content) => {
     const message = {
       content,
       time: new Date().toISOString(),
@@ -55,7 +53,7 @@ class Chat extends React.Component {
     };
 
     this.props.pushMessageStarted(message);
-  }
+  };
 }
 
 const mapStateToProps = (state) => ({
