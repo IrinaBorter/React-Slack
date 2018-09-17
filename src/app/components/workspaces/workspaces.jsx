@@ -9,10 +9,16 @@ import style from './workspaces.scss';
 class Workspaces extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      memberId: 1,
+    };
   }
 
   componentDidMount() {
-    this.props.loadWorkspacesStarted();
+    const { memberId } = this.state;
+
+    this.props.loadWorkspacesStarted(memberId);
   }
 
   render() {

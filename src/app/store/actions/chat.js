@@ -5,9 +5,9 @@ export const PUSH_MESSAGE_STARTED = 'PUSH_MESSAGE_STARTED';
 export const PUSH_MESSAGE_SUCCEEDED = 'PUSH_MESSAGE_SUCCEEDED';
 export const PUSH_MESSAGE_FAILED = 'PUSH_MESSAGE_FAILED';
 
-export const loadMessagesStarted = () => ({
+export const loadMessagesStarted = (channelId) => ({
   type: LOAD_MESSAGES_STARTED,
-  payload: null,
+  payload: { channelId },
 });
 
 export const loadMessagesSucceeded = (messages) => ({

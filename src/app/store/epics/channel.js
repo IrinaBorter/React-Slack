@@ -6,8 +6,8 @@ import { getChannels } from '../../services/channel';
 
 const fetchChannels = action$ => {
   return action$.ofType(channelActions.LOAD_CHANNELS_STARTED)
-    .switchMap(() => {
-      return getChannels(1)
+    .switchMap(({ payload: { workspaceId } }) => {
+      return getChannels(workspaceId)
         .map(response => channelActions.loadChannelsSucceeded(response.data))
         .catch((error) => of(channelActions.loadChannelsFailed(error)));
     });

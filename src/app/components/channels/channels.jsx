@@ -13,13 +13,25 @@ class Channels extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadChannelsStarted();
+    const { workspaceId } = this.props.match.params;
+
+    this.props.loadChannelsStarted(workspaceId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { workspaceId } = this.props.match.params;
+    const prevWorkspaceId = prevProps.match.params.workspaceId;
+
+    if (workspaceId !== prevWorkspaceId) {
+      this.props.loadChannelsStarted(workspaceId);
+    }
   }
 
   render() {
     const { channels } = this.props;
 
-    return ([
+    return (
+      <React.Fragment>
         <div className={style.channelsContainer}>
           <h3 className={style.channelsTabHeader}>Channels</h3>
           {
@@ -31,9 +43,10 @@ class Channels extends React.Component {
               );
             })
           }
-        </div>,
-        renderRoutes(this.props.route.routes),
-    ]);
+        </div>
+        {renderRoutes(this.props.route.routes)}
+      </React.Fragment>
+    );
   }
 }
 

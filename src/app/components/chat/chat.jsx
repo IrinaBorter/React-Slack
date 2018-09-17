@@ -17,7 +17,18 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadMessagesStarted();
+    const { channelId } = this.props.match.params;
+
+    this.props.loadMessagesStarted(channelId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { channelId } = this.props.match.params;
+    const prevChannelId = prevProps.match.params.channelId;
+
+    if (channelId !== prevChannelId) {
+      this.props.loadMessagesStarted(channelId);
+    }
   }
 
   render() {
@@ -40,9 +51,9 @@ class Chat extends React.Component {
         id: '1',
         name: 'Iryna',
       },
+      channelId: this.props.match.params.channelId,
     };
 
-    console.log(message);
     this.props.pushMessageStarted(message);
   }
 }

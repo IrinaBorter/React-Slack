@@ -6,9 +6,9 @@ export const SET_ACTIVE_WORKSPACE = 'SET_ACTIVE_WORKSPACE';
 export const INCLUDE_MEMBER_TO_WORKSPACE = 'INCLUDE_MEMBER_TO_WORKSPACE';
 export const EXCLUDE_MEMBER_FROM_WORKSPACE = 'EXCLUDE_MEMBER_FROM_WORKSPACE';
 
-export const loadWorkspacesStarted = () => ({
+export const loadWorkspacesStarted = (memberId) => ({
   type: LOAD_WORKSPACES_STARTED,
-  payload: null,
+  payload: { memberId },
 });
 
 export const loadWorkspacesSucceeded = (workspaces) => ({
