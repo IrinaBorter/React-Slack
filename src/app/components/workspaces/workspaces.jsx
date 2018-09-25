@@ -33,7 +33,7 @@ class Workspaces extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ workspaces: state.workspace.workspaces });
+const mapStateToProps = (state) => ({ workspaces: state.getIn(['workspace', 'workspaces']) });
 const mapActionsToProps = { loadWorkspacesStarted };
 
 export default connect(mapStateToProps, mapActionsToProps)(Workspaces);

@@ -29,7 +29,7 @@ class Channels extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  channels: state.channel.channels,
+  channels: state.getIn(['channel', 'channels']),
 });
 
 const mapActionsToProps = { loadChannelsStarted };

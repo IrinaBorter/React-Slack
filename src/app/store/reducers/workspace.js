@@ -1,28 +1,30 @@
+import { fromJS, Record } from 'immutable';
+
 import * as workspaceActions from '../actions/workspace';
 
-const initialState = {
+const initialState = Record({
   workspaces: [],
   activeWorkspace: null,
   loading: false,
   error: false,
-};
+});
 
 const workspace = (state = initialState, action) => {
   switch (action.type) {
     case workspaceActions.ADD_WORKSPACE: {
-      return { ...state, workspaces: [...state.workspaces, action.payload.workspace] };
+      return state.setIn(['workspaces'], fromJS([...state.workspaces, action.payload.workspace]));
     }
     case workspaceActions.SET_ACTIVE_WORKSPACE: {
-      return { ...state, activeWorkspace: action.payload.workspace };
+      return state.setIn(['activeWorkspace'], fromJS(action.payload.workspace));
     }
     case workspaceActions.LOAD_WORKSPACES_STARTED: {
-      return { ...state, loading: true };
+      return state.setIn(['loading'], true);
     }
     case workspaceActions.LOAD_WORKSPACES_SUCCEEDED: {
-      return { ...state, ...action.payload, loading: false };
+      return state.setIn(['loading'], false).setIn(['workspaces'], fromJS(action.payload.workspace));
     }
     case workspaceActions.LOAD_WORKSPACES_FAILED: {
-      return { ...state, error: true, loading: false };
+      return state.setIn(['error'], true).setIn(['loading'], false);
     }
     default:
       return state
