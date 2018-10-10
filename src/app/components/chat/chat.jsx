@@ -57,8 +57,8 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  messages: state.chat.messages,
-  title: state.chat.chatName,
+  messages: state.getIn(['chat', 'messages']),
+  title: state.getIn(['chat', 'chatName']),
 });
 
 const mapActionsToProps = {
